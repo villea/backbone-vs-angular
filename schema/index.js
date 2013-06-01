@@ -7,8 +7,11 @@ exports.connect = function(url){
 var taskTypes = ["inbox","in progress","done"];
 
 exports.Task= mongoose.model("Task",{
-	name : String,
-	trail : {type: String, enum : taskTypes}
+	name : {type :String,
+		    required : true},
+	trail : {type: String, 
+		     enum : taskTypes,
+		     required : true}
 });
 
 exports.taskTypes = taskTypes;
