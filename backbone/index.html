@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<script type="text/javascript" src="/javascripts/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="/javascripts/json2.js"></script>	
     <script type="text/javascript" src="/javascripts/underscore-min.js"></script>
-    <script type="text/javascript" src="/javascripts/json2.js"></script>	
     <script type="text/javascript" src="/javascripts/backbone.js"></script>
     <script type="text/javascript" src="./bb-tasks.js"></script>
   </head>
@@ -21,28 +21,58 @@
           <button class="btn btn-large" style="float:right"><i class="icon-plus"></i></button>
        </div>
        <div class="span3">
-          <h3>Inbox</h3>
+       	  <div class="row">
+            <h3>Inbox</h3>
+          </div>
+          <div id="inbox" class="row">
+          
+          </div>
        </div>
        <div class="span3">
-          <h3>In progress</h3>
+          <div class="row">
+            <h3>In progress</h3>
+          </div>
+          <div id="in_progress" class="row">
+          
+          </div>
        </div>
        <div class="span3">
+          <div class="row">
           <h3>Done</h3>
+          </div>
+          <div id="done" class="row">
+          
+          </div>
        </div>       
      </div>	
   </div>
   <script type="text/javascript">
-    $(function (){
      
-     var tasks = new Tasks();
+    var tasks = new Tasks();
 
-     new AddTaskView({   	
+    new AddTaskView({   	
        collection : tasks
     })
     
+    new ShowTasksView({
+       el : '#inbox',
+       collection : tasks,
+       trail : 'inbox'
+    }) 
+
+    new ShowTasksView({
+       el : '#in_progress',
+       collection : tasks,
+       trail : 'in progress'
     })
 
+    new ShowTasksView({
+       el : '#done',
+       collection : tasks,
+       trail : 'done'
+    })
 
+    tasks.fetch(); 
   </script>
 </body>
 </html>
