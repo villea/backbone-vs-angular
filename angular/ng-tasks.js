@@ -4,7 +4,7 @@ var app = angular.module('taskboard',[]);
 app.directive('task', function (){
 	return {
 		restrict : 'E',
-		templateUrl : 'task.html',
+		templateUrl : '/ng-tasks/task.html',
 		link : function (scope,element){
 			//console.log(scope.task)
 		}
