@@ -8,7 +8,7 @@ var Task = Backbone.Model.extend({
 	
   initialize : function (attrs,options){
      this.trails = ['inbox','in progress','done'];
-     this.trail_index = 0;
+     this.trail_index = this.trails.indexOf(this.get('trail'))
   },
 
   validate: function(attrs, options) {
@@ -89,7 +89,10 @@ var ShowTaskView = Backbone.View.extend({
   },
 
   render : function (){
-    this.$el.html(this.template(this.model.toJSON()))
+    var data = this.model.toJSON();
+    data.showLeftArrow = !this.model.isLeft();
+    data.showRightArrow = !this.model.isRight();
+    this.$el.html(this.template(data))
     return this;
   },
 
