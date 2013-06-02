@@ -23,7 +23,6 @@ app.controller('TasksCtrl', function($scope,$http){
     })
 
     $scope.addTask = function (task){
-    	console.log(task.name);
     	task.trail = 'inbox';
     	$http.post('/api/tasks',task).success(function (data){
     		$scope.newtask.name = '';
@@ -50,7 +49,6 @@ app.controller('TasksCtrl', function($scope,$http){
    }
 
    $scope.showLeftArrow = function (task){
-   	  console.log($scope.trails.indexOf(task.trail) > 0)
    	  return $scope.trails.indexOf(task.trail) > 0;
    }
 
