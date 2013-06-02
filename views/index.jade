@@ -1,16 +1,37 @@
-h1 API
-table
+h1 Tasks Rest API
+
+h2 Data
+
+h3 Task
+
+div.container
+table(class="table")
+ tr
+   th name
+   th type
+ tr
+   td name
+   td String
+ tr
+   td trail
+   td "inbox","in progress","done"
+
+h2 URLS
+table(class="table")
   tr
     th URL
     th METHOD
-    th Params
+    th Definition
   tr
-    td /employees
+    td /tasks
     td GET
-    td
+    td Returns all tasks
   tr
-    td /employees
+    td /tasks
     td POST
-    td 
-       {firstname : String,
-       surname : String}
+    td Creates new task
+  tr
+    td /tasks/:id
+    td PUT
+    td Updates task
+      
