@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="taskboard">
   <head>
 	<title>Angular - Todos</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,12 +20,8 @@
             <h3>Inbox</h3>
         </div>
         <div id="inbox" class="row">
-        <div class="row task" ng-repeat="task in tasks">
-         <span>       
-       	   <button class="btn btn-link left"><i class="icon-chevron-left"></i></button>
-           <b>{{ task.name}}</b>
-           <button class="btn btn-link right"><i class="icon-chevron-right"></i></button>
-        </span>
+        <div class="row task" ng-repeat="task in tasks | filter: trail = 'inbox'">
+            <task></task>
        </div>
        </div>
           <div id="add_task" class="row">
@@ -38,7 +34,9 @@
             <h3>In progress</h3>
           </div>
           <div id="in_progress" class="row">
-          
+           <div class="row task" ng-repeat="task in tasks | filter: trail = 'in progress'">
+             <task></task>
+           </div>
           </div>
        </div>
        <div class="span4">
@@ -46,7 +44,9 @@
           <h3>Done</h3>
           </div>
           <div id="done" class="row">
-          
+            <div class="row task" ng-repeat="task in tasks | filter: trail = 'done'">
+             <task></task>
+           </div>
           </div>
        </div>       
      </div>	

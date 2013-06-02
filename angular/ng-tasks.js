@@ -1,6 +1,18 @@
 
+var app = angular.module('taskboard',[]);
 
-function TasksCtrl($scope,$http){
+app.directive('task', function (){
+	return {
+		restrict : 'E',
+		templateUrl : 'task.html',
+		link : function (scope,element){
+			//console.log(scope.task)
+		}
+	}
+})
+
+
+app.controller('TasksCtrl', function($scope,$http){
 
 
     $scope.trails = ['inbox','in progress','done'];
@@ -19,4 +31,31 @@ function TasksCtrl($scope,$http){
     	})
     }
 
-}
+   $scope.moveLeft = function (task){
+     var trailIndex = $scope.trails.indexOf(task.trail);
+     if (trailIndex > 0){
+         trailIndex -= 1;
+         task.trail = $scope.trails[trailIndex];
+         $http.put('/api/tasks/'+task._id,task);
+     }
+   }
+
+   $scope.moveRight = function (task){
+     var trailIndex = $scope.trails.indexOf(task.trail);
+     if (trailIndex < $scope.trails.length - 1){
+     	trailIndex += 1;
+     	task.trail = $scope.trails[trailIndex];
+     	$http.put('/api/tasks/'+task._id,task);
+     }
+   }
+
+   $scope.showLeftArrow = function (task){
+   	  console.log($scope.trails.indexOf(task.trail) > 0)
+   	  return $scope.trails.indexOf(task.trail) > 0;
+   }
+
+   $scope.showRightArrow = function (task){
+   	  return $scope.trails.indexOf(task.trail) < $scope.trails.length - 1;
+   }
+
+})
