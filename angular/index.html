@@ -1,0 +1,54 @@
+<!doctype html>
+<html ng-app>
+  <head>
+	<title>Angular - Todos</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="/stylesheets/style.css" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="/javascripts/underscore-min.js"></script>
+    <script type="text/javascript" src="/javascripts/angular.min.js"></script>
+    <script type="text/javascript" src="./ng-tasks.js"></script>
+ </head>
+ <body>
+  <div class="container" ng-controller="TasksCtrl">
+     <div class="row">
+       <h1>Angular - Task Board</h1>
+     </div>
+     <div class="row">
+       <div class="span4">
+       	<div class="row">
+            <h3>Inbox</h3>
+        </div>
+        <div id="inbox" class="row">
+        <div class="row task" ng-repeat="task in tasks">
+         <span>       
+       	   <button class="btn btn-link left"><i class="icon-chevron-left"></i></button>
+           <b>{{ task.name}}</b>
+           <button class="btn btn-link right"><i class="icon-chevron-right"></i></button>
+        </span>
+       </div>
+       </div>
+          <div id="add_task" class="row">
+             <textarea name="name" placeholder="Task" ng-model="newtask.name"></textarea>
+             <button class="btn btn-large" ng-click="addTask(newtask)"><i class="icon-plus"></i></button>
+          </div>	
+       </div>
+       <div class="span4">
+          <div class="row">
+            <h3>In progress</h3>
+          </div>
+          <div id="in_progress" class="row">
+          
+          </div>
+       </div>
+       <div class="span4">
+          <div class="row">
+          <h3>Done</h3>
+          </div>
+          <div id="done" class="row">
+          
+          </div>
+       </div>       
+     </div>	
+ </body>
+</html>

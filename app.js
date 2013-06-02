@@ -21,6 +21,7 @@ app.configure(function(){
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
   app.use('/bb-tasks',express.static(__dirname + '/backbone'));
+  app.use('/ng-tasks',express.static(__dirname + '/angular'));
 });
 
 app.configure('development', function(){
