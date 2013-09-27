@@ -1,4 +1,8 @@
-var Task = Backbone.Model.extend({
+"use strict";
+
+var App = {}
+
+App.Task = Backbone.Model.extend({
 
   idAttribute: "_id",
 
@@ -40,13 +44,13 @@ var Task = Backbone.Model.extend({
 
 });
 
-var Tasks = Backbone.Collection.extend({
-	model : Task,
+App.Tasks = Backbone.Collection.extend({
+	model : App.Task,
 	url : '/api/tasks'
 })
 
 
-var AddTaskView = Backbone.View.extend({
+App.AddTaskView = Backbone.View.extend({
 
     el : '#add_task',
 
@@ -67,7 +71,7 @@ var AddTaskView = Backbone.View.extend({
     },
 
     add : function (){
-      var task = new Task();
+      var task = new App.Task();
       task.set('name',this.$namefield.val())
       console.log(this.$namefield.val())
     	this.collection.create(task,{wait: true});
@@ -76,7 +80,7 @@ var AddTaskView = Backbone.View.extend({
     
 })
 
-var ShowTaskView = Backbone.View.extend({
+App.ShowTaskView = Backbone.View.extend({
 
   events : {
     'click .left' : 'moveLeft',
@@ -106,7 +110,7 @@ var ShowTaskView = Backbone.View.extend({
 
 })
 
-var ShowTasksView = Backbone.View.extend({
+App.ShowTasksView = Backbone.View.extend({
 
     initialize : function (opts){
       this.listenTo(this.collection,"add change",this.render);
@@ -120,7 +124,7 @@ var ShowTasksView = Backbone.View.extend({
         _.each(this.collection.filter(function (task){
           return task.get("trail") === self.trail;
         }), function (task){
-          var showTaskView = new ShowTaskView({ model : task});
+          var showTaskView = new App.ShowTaskView({ model : task});
           self.$el.append(showTaskView.render().$el);
         })
         

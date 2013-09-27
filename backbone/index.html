@@ -67,33 +67,33 @@
 
   <script type="text/javascript">
     $(function (){
-    var tasks = new Tasks();
+    "use strict";
 
-    new AddTaskView({   	
+    var tasks = new App.Tasks();
+
+    new App.AddTaskView({   	
        collection : tasks
     })
     
-    new ShowTasksView({
+    new App.ShowTasksView({
        el : '#inbox',
        collection : tasks,
        trail : 'inbox'
     }) 
 
-    new ShowTasksView({
+    new App.ShowTasksView({
        el : '#in_progress',
        collection : tasks,
        trail : 'in progress'
     })
 
-    new ShowTasksView({
+    new App.ShowTasksView({
        el : '#done',
        collection : tasks,
        trail : 'done'
     })
 
     tasks.fetch(); 
-
-    window.tasks = tasks;
 
     }) 
 
